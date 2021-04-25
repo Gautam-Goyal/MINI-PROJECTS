@@ -20,25 +20,27 @@ class hostel
 
     char phone[10];
 
- 
+
 
     public:
 
-   int main_menu();   
+   int main_menu();
 
-    int add();       
+   int rules();
 
-  int display();  
+    int add();
 
-    int rooms();   
+    int display();
 
-    int edit();   
+    int rooms();
 
-    int check(int);   
+    int edit();
 
-    int modify(int);   
+    int check(int);
 
-    int delete_rec(int);   
+    int modify(int);
+
+    int delete_rec(int);
 
 };
 
@@ -48,7 +50,7 @@ int hostel::main_menu()
 
 {
 
-      
+
 
     int choice=0;
 
@@ -56,29 +58,31 @@ int hostel::main_menu()
 
     while(choice!=5)
 
-    {       
+    {
 
-        cout<<"\n\t\t\t\t*************";
+        cout<<"\n\t\t\t\t*****";
 
         cout<<"\n\t\t\t\t* MAIN MENU *";
 
-        cout<<"\n\t\t\t\t*************";
+        cout<<"\n\t\t\t\t*****";
 
         cout<<"\n\n\n\t\t\t1.Book A Room";
 
-        cout<<"\n\t\t\t2.student Record";
+        cout<<"\n\t\t\t2.student record";
 
         cout<<"\n\t\t\t3.Rooms Allotted";
 
-        cout<<"\n\t\t\t4.Edit Record";
+        cout<<"\n\t\t\t4.Edit record";
 
-        cout<<"\n\t\t\t5.Exit";
+        cout<<"\n\t\t\t5.Rules & Regulations";
+
+        cout<<"\n\t\t\t6.Exit";
 
         cout<<"\n\n\t\t\tEnter Your Choice: ";
 
         cin>>choice;
 
-       
+
 
         switch(choice)
 
@@ -100,7 +104,11 @@ int hostel::main_menu()
 
                     break;
 
-            case 5: break;
+            case 5: rules();
+
+                    break;
+
+            case 6: break;
 
             default:
 
@@ -126,25 +134,25 @@ int hostel::main_menu()
 
 int hostel::add()
 
-{ 
+{
 
     int r,flag;
 
-    ofstream fout("never.txt",ios::app);
+    ofstream fout("newest.txt",ios::app);
 
-   
+
 
     cout<<"\n Enter Customer Detalis";
 
-    cout<<"\n **********************";
+    cout<<"\n ********";
 
     cout<<"\n\n Room no: ";
 
     cin>>r;
 
-    flag=check(r); 
+    flag=check(r);
 
-   
+
 
     if(flag)
 
@@ -153,7 +161,6 @@ int hostel::add()
     else
 
     {
-
         room_no=r;
 
         cout<<"\n Name:\t ";
@@ -168,15 +175,13 @@ int hostel::add()
 
         cin>>phone;
 
-              cout<<endl;
-
         fout.write((char*)this,sizeof(*this));
 
         cout<<"\n Room is booked!!!";
 
     }
 
-   
+
 
     cout<<"\n Press any key to continue!!";
 
@@ -194,9 +199,9 @@ int hostel::display()
 
 {
 
-  
 
-    ifstream fin("Record.txt",ios::in); 
+
+    ifstream fin("newest.txt",ios::in);
 
     int r;
 
@@ -204,7 +209,7 @@ int hostel::display()
 
     cin>>r;
 
-   
+
 
     while(!fin.eof())
 
@@ -212,7 +217,7 @@ int hostel::display()
 
         fin.read((char*)this,sizeof(*this));
 
-       
+
 
            if(room_no = r)
 
@@ -220,7 +225,7 @@ int hostel::display()
 
             cout<<"\n Cusromer Details";
 
-            cout<<"\n ****************";
+            cout<<"\n ******";
 
             cout<<"\n\n Room no: "<<room_no;
 
@@ -230,19 +235,19 @@ int hostel::display()
 
             cout<<"\n Phone no: "<<phone;
 
-           
+
 
               }
 
-             
 
-  
+
+
 
        else{
 
         cout<<"\n Sorry Room no. not found or vacant!!";
 
-       
+
 
               cout<<"\n\n Press any key to continue!!";}
 
@@ -254,92 +259,44 @@ int hostel::display()
 
               }}
 
-
-
 int hostel::rooms()
-
 {
-
- 
-
-    ifstream fin("Record.txt",ios::in);
+    ifstream fin("newest.txt",ios::in);
 
     cout<<"\n\t\t\tList Of Rooms Allotted";
-
-    cout<<"\n\t\t\t*********************";
-
     cout<<"\n\n Room No.\tName\t\tAddress\t\tPhone No.\n";
-
- 
-
-       while(!fin.eof())
-
+    while(!fin.eof())
     {
-
-
-
         fin.read((char*)this,sizeof(*this));
-
-        cout<<"\n\n "<<room_no<<"\t\t"<<name;
-
+        cout<<"\n\n"<<room_no<<"\t\t"<<name;
         cout<<"\t\t"<<address<<"\t\t"<<phone;
-
-             
-
-       }
-
-
+    }
 
     cout<<"\n\n\n\t\t\tPress any key to continue!!";
-
-       system("pause");
-
+    system("pause");
     fin.close();
-
     return 0;
-
 }
 
 
 
 int hostel::edit()
-
 {
-
-  
-
     int choice,r;
 
-    
-
     cout<<"\n EDIT MENU";
-
-    cout<<"\n *********";
-
-    cout<<"\n\n 1.Modify Customer Record";
-
-    cout<<"\n 2.Delete Customer Record";
-
-   
+    cout<<"\n ***";
+    cout<<"\n\n 1.Modify Customer newest";
+    cout<<"\n 2.Delete Customer newest";
 
     cout<<"\n Enter your choice: ";
-
     cin>>choice;
 
-   
-
-       cout<<"\n Enter room no: ";
-
+    cout<<"\n Enter room no: ";
     cin>>r;
 
-   
-
-   
-
     switch(choice)
-
     {
-
         case 1: modify(r);
 
                 break;
@@ -352,7 +309,7 @@ int hostel::edit()
 
     }
 
-      
+
 
     cout<<"\n Press any key to continue!!!";
 
@@ -370,7 +327,7 @@ int hostel::check(int r)
 
     int flag=0;
 
-    ifstream fin("never.txt",ios::in);
+    ifstream fin("newest.txt",ios::in);
 
     while(!fin.eof())
 
@@ -390,7 +347,7 @@ int hostel::check(int r)
 
     }
 
-   
+
 
     fin.close();
 
@@ -406,7 +363,7 @@ int hostel::modify(int r)
 
     long pos , flag;
 
-    fstream file("Record.txt",ios::in|ios::out|ios::binary);
+    fstream file("newest.txt",ios::in|ios::out|ios::binary);
 
     flag=0;
 
@@ -414,7 +371,7 @@ int hostel::modify(int r)
 
        {
 
-         pos=file.tellg(); 
+         pos=file.tellg();
 
         file.read((char*)this,sizeof(*this));
 
@@ -424,7 +381,7 @@ int hostel::modify(int r)
 
             cout<<"\n Enter New Details";
 
-            cout<<"\n *****************";
+            cout<<"\n *******";
 
             cout<<"\n Name: ";
 
@@ -440,11 +397,11 @@ int hostel::modify(int r)
 
             file.seekg(pos);
 
-           
+
 
             file.write((char*)this,sizeof(*this));
 
-            cout<<"\n Record is modified!!";
+            cout<<"\n newest is modified!!";
 
                flag=1;
 
@@ -452,15 +409,15 @@ int hostel::modify(int r)
 
               }}
 
-   
+
 
     if(flag==0)
 
-        
+
 
                      cout<<"\n Sorry Room no. not found or vacant!!";
 
-      
+
 
               file.close();
 
@@ -478,11 +435,11 @@ int hostel::delete_rec(int r)
 
     char ch;
 
-    ifstream fin("Record.txt",ios::in);
+    ifstream fin("newest.txt",ios::in);
 
     ofstream fout("temp.txt",ios::out);
 
-   
+
 
     while(!fin.eof())
 
@@ -500,17 +457,17 @@ int hostel::delete_rec(int r)
 
             cout<<"\n Pone No: "<<phone;
 
-            cout<<"\n\n Do you want to delete this record(y/n): ";
+            cout<<"\n\n Do you want to delete this newest(y/n): ";
 
             cin>>ch;
 
-           
+
 
             if(ch=='n')
 
             fout.write((char*)this,sizeof(*this));
 
-           
+
 
             flag=1;
 
@@ -522,13 +479,13 @@ int hostel::delete_rec(int r)
 
     }
 
-   
+
 
     fin.close();
 
     fout.close();
 
-   
+
 
     if(flag==0)
 
@@ -538,9 +495,9 @@ int hostel::delete_rec(int r)
 
     {
 
-        remove("Record.txt");
+        remove("newest.txt");
 
-        rename("temp.txt","Record.txt");
+        rename("temp.txt","newest.txt");
 
         return 0;
 
@@ -548,6 +505,17 @@ int hostel::delete_rec(int r)
 
 }
 
+int hostel::rules(){
+     cout << "          RULE & REGULATION  " << endl;
+ cout << "1 : No ceagrat allowed in hostel.." << endl;
+cout << "2 : Facilaty of generater is available and it will continous 5PM every Day.." << endl;
+cout << "3 : The gate will be closed about 10:30 PM and open 6:00 AM every Day.." << endl;
+ cout << "4 : Outsider are not allowed in hostel in night only friends are allowed in Exame night.. " << endl;
+cout << "5 : Family member can stay in Hostel only 2 days otherwise it will be charged.." << endl;
+
+return 0;
+system("pause");
+}
 
 
 int main()
@@ -556,18 +524,18 @@ int main()
 
     hostel h;
 
-   
 
-   
 
-    cout<<"\n\t\t\t****************************";
+
+
+    cout<<"\n\t\t\t**********";
 
     cout<<"\n\t\t\t* HOSTEL MANAGEMENT PROJECT *";
 
-    cout<<"\n\t\t\t****************************";
+    cout<<"\n\t\t\t**********";
 
 
-   
+
 
     cout<<"\n\n\n\n\n\t\t\t\tPress any key to continue!!";
 
