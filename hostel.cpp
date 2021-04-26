@@ -56,7 +56,7 @@ int hostel::main_menu()
 
 
 
-    while(choice!=5)
+    while(choice!=6)
 
     {
 
